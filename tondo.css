@@ -1,0 +1,7 @@
+body {
+    background-image: url('https://i.pinimg.com/originals/3d/38/4d/3d384d829dbf4b678cfea617114e149d.jpg');
+    /* Path to your background image */
+    background-size: cover;
+    
+    /* Center horizontally */
+}

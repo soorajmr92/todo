@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <!-- Add Bootstrap CSS for styling -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="list.css"> 
+    <style>
+        .navbar {
+            margin-bottom: 20px;
+        }
+        .todo-table {
+            margin-top: 20px;
+        }
+        .completed-task {
+            color: green;
+        }
+
+        /* Custom style for black strike-through line */
+        .strikethrough {
+            text-decoration: line-through; /* Adds the line-through effect */
+            text-decoration-color: black; /* Makes the strike-through line black */
+            color: inherit; /* Ensure the text color doesn't change */
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">To-Do List</a>
+    <div class="d-flex">
+      <a class="btn btn-danger" href="index.html">LogOut</a>
+    </div>
+  </div>
+</nav>
+
+<!-- To-Do List Section -->
+<div class="container">
+    <h3>Today's To-Do List</h3>
+    <div class="todo-table">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Task</th>
+                    <th scope="col">Completed</th>
+                </tr>
+            </thead>
+            <tbody id="todoTableBody">
+                <!-- To-Do items will be dynamically added here -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Add Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    let completedTasks = 0;
+
+    // Fetch to-do list data from API
+    function fetchTodos() {
+        fetch('https://jsonplaceholder.typicode.com/todos')
+            .then(response => response.json())
+            .then(todos => {
+                displayTodos(todos);
+            })
+            .catch(error => console.log('Error fetching to-do list:', error));
+    }
+
+    // Display To-Do List in Table Format
+    function displayTodos(todos) {
+        const todoTableBody = document.getElementById('todoTableBody');
+        todoTableBody.innerHTML = ''; // Clear previous todos
+
+        todos.forEach((todo, index) => {
+            const row = document.createElement('tr');
+            const isChecked = todo.completed ? 'checked' : '';
+            const isDisabled = todo.completed ? 'disabled' : '';
+            const strikeClass = todo.completed ? 'strikethrough' : '';  // Add strikethrough class for completed tasks
+
+            row.innerHTML = `
+                <th scope="row">${index + 1}</th>
+                <td class="${strikeClass}">${todo.title}</td>
+                <td>
+                    <input type="checkbox" class="form-check-input" ${isChecked} ${isDisabled} data-id="${todo.id}">
+                </td>
+            `;
+            todoTableBody.appendChild(row);
+        });
+
+        // Add event listener for checkbox clicks
+        document.querySelectorAll('.form-check-input').forEach(checkbox => {
+            checkbox.addEventListener('click', handleTodoCompletion);
+        });
+    }
+
+    function handleTodoCompletion(event) {
+        const isChecked = event.target.checked;
+        
+        // Create a promise to handle completion of the task
+        const checkCompletion = new Promise((resolve, reject) => {
+            if (isChecked) {
+                completedTasks++;
+                resolve();
+            } else {
+                completedTasks--;
+                resolve();
+            }
+        });
+
+        // Handle the completion check
+        checkCompletion.then(() => {
+            if (completedTasks === 5) {
+                setTimeout(() => {
+                    alert('Congrats! 5 Tasks have been Successfully Completed.');
+                    completedTasks = 0; // Reset task count
+                }, 500);
+            }
+
+            // Update strikethrough class on completed tasks
+            updateStrikethrough();
+        }).catch(error => {
+            console.error('Error in task completion:', error);
+        });
+    }
+
+    // Update strikethrough on completed tasks after checkbox click
+    function updateStrikethrough() {
+        document.querySelectorAll('.form-check-input').forEach(checkbox => {
+            const row = checkbox.closest('tr');  // Get the row of the checkbox
+            const taskTitle = row.querySelector('td');  // Get the task title cell
+
+            // Add/remove strikethrough based on checkbox state
+            if (checkbox.checked) {
+                taskTitle.classList.add('strikethrough');
+            } else {
+                taskTitle.classList.remove('strikethrough');
+            }
+        });
+    }
+
+    // Call fetchTodos when the page loads
+    window.onload = fetchTodos;
+</script>
+</body>
+</html>

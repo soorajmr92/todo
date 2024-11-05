@@ -1,0 +1,202 @@
+/* style.css */
+
+/* Apply a background image to the entire body */
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('https://png.pngtree.com/thumb_back/fw800/background/20230516/pngtree-room-full-of-pictures-and-plants-image_2575440.jpg');
+    /* Specify your background image */
+    background-size: cover;
+    /* Make sure the image covers the whole page */
+    background-position: center;
+    /* Center the background image */
+    background-attachment: fixed;
+    /* Make sure the background image stays fixed when scrolling */
+    color: #000000d9;
+    /* Make text white for better contrast with dark background */
+}
+
+/* Style for the navbar to make it stand out */
+.navbar {
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Dark transparent background */
+    color: rgba(255, 255, 255, 0);
+}
+
+.navbar a {
+    color: rgba(255, 255, 255, 0) !important;
+    /* Ensure navbar links are white */
+}
+
+/* Add spacing for the form container */
+.container {
+    margin-top: 30px;
+}
+
+/* Styling for the list items in the To-Do list */
+.list-group-item {
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0);
+    /* Semi-transparent white background */
+    margin-bottom: 10px;
+    /* Space between tasks */
+}
+
+/* Style the checkbox to give it more space */
+.list-group-item input[type="checkbox"] {
+    margin-right: 15px;
+}
+
+/* Customize card for login form */
+.card {
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Dark card background */
+    color: rgb(27, 13, 13);
+    /* White text inside the card */
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* Adjust login form text color and spacing */
+h3,
+.form-label {
+    color: rgb(18, 16, 36);
+}
+
+/* Global Styles */
+body,
+html {
+    height: 100%;
+    /* Ensure body and html fill the entire viewport height */
+    margin: 0;
+    /* Remove default margins */
+    font-family: 'Arial', sans-serif;
+    /* Clean sans-serif font */
+    background-color: #010b1b;
+    /* Light background color */
+}
+
+/* Container for the form */
+.container {
+    display: flex;
+    /* Use Flexbox for alignment */
+    justify-content: flex-end;
+    /* Align the form to the right side */
+    align-items: center;
+    /* Vertically center the form */
+    height: 100vh;
+    /* Full viewport height */
+    padding-right: 50px;
+    /* Add some spacing from the right edge */
+}
+
+/* Form Card Styling */
+.card {
+    background-color: #ffffff00;
+    /* White background for the form */
+    border-radius: 8px;
+    /* Rounded corners for the card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Light shadow for depth */
+    width: 100%;
+    /* Make the form take full width */
+    max-width: 300px;
+    /* Limit the maximum width */
+    padding: 30px;
+    /* Padding inside the form */
+}
+
+/* Heading Style */
+.card h3 {
+    text-align: center;
+    /* Center-align the heading */
+    margin-bottom: 20px;
+    /* Space below the heading */
+    font-size: 24px;
+    color: #191313;
+    /* Dark text color for readability */
+}
+
+/* Label Styling */
+.form-label {
+    font-weight: bold;
+    /* Bold labels */
+    color: #120e0e;
+    /* Dark color for labels */
+    margin-bottom: 8px;
+    /* Space below the label */
+}
+
+/* Input Fields Styling */
+.form-control {
+    padding: 10px;
+    /* Padding inside the input fields */
+    margin-bottom: 20px;
+    /* Space between fields */
+    border: 1px solid #cccccc0a;
+    /* Light gray border */
+    border-radius: 4px;
+    /* Rounded corners */
+    width: 100%;
+    /* Full width of the parent */
+    box-sizing: border-box;
+    /* Include padding in width */
+    font-size: 16px;
+    /* Font size for input text */
+}
+
+/* Input Fields - Focus State */
+.form-control:focus {
+    border-color: #60d0eb;
+    /* Blue border on focus */
+    outline: none;
+    /* Remove default outline */
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+    /* Soft blue shadow */
+}
+
+/* Button Styling */
+.btn {
+    padding: 12px;
+    /* Padding inside the button */
+    background-color: #78ccf6;
+    /* Blue background color */
+    color: rgb(0, 77, 68);
+    /* White text color */
+    border: none;
+    /* Remove border */
+    border-radius: 4px;
+    /* Rounded corners */
+    width: 100%;
+    /* Make the button take full width */
+    font-size: 16px;
+    /* Set the font size */
+    cursor: pointer;
+    /* Pointer cursor on hover */
+}
+
+/* Button Hover Effect */
+.btn:hover {
+    background-color: #439dc0;
+    /* Darker blue on hover */
+    transition: background-color 0.3s ease;
+    /* Smooth transition effect */
+}
+
+/* Responsive Design - For smaller screens */
+@media (max-width: 768px) {
+    .container {
+        padding-right: 20px;
+        /* Less padding on smaller screens */
+    }
+
+    .card {
+        padding: 20px;
+        /* Reduce padding on smaller screens */
+    }
+
+    .card h3 {
+        font-size: 20px;
+        /* Smaller heading size */
+    }
+}
